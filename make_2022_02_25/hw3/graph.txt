@@ -1,0 +1,12 @@
+hw3.html <-- hw3.Rmd
+^.    ^
+|.    |
+|.    data/dennys.rds   <----- parse_dennys.R
+|                   ^
+data/lq.rds.        |
+^   ^               data/dennys/*.html <-- get_dennys.R
+|   |
+|   |
+|   data/lq/*.html  <-- get_lq.R 
+|
+parse_lq.R
