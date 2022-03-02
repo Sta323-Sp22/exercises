@@ -110,9 +110,36 @@ repeat {
 
 ## Exercise 1
 
+res = list()
+page = 1
+pageSize = 50
+
+repeat {
+  cat("Downloading page", page, "\n")
+  d = jsonlite::read_json( glue::glue(
+    "https://www.anapioficeandfire.com/api/characters?pageSize={pageSize}&page={page}"
+  ) )
+  
+  res = c(res, d)
+  
+  if (length(d) != pageSize)
+    break
+  
+  page = page + 1
+}
+
+length(res)
+
+char = res %>%
+  tibble(char = .) %>%
+  tidyr::unnest_wider(char)
+  
+char %>%
+  summarize(n = n())
 
 
-
+char %>%
+  summarize(prop_dead = sum(died != "") / n() )
 
 
 
